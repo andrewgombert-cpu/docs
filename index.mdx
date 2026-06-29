@@ -1,20 +1,26 @@
 ---
-title: "Introduction"
-description: "Welcome to your project"
+title: "HyperID"
+description: "Real-time celebrity facial recognition for professional photographers."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+## What is HyperID?
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+HyperID is a real-time facial recognition system for professional photographers at red carpet, sports, and live events. It eliminates the manual ID bottleneck — tagging talent the moment the frame is captured.
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+## The Pipeline
+
+Sony Camera → LAN → Sony PDT-FP1 (Android 13, Snapdragon 8 Gen 2) → Face Crop → AWS Rekognition (97%+ confidence) → EXIF/IPTC Metadata → FTP
+
+Recognition runs non-blocking. Capture is never interrupted.
+
+## Primary Use Case
+
+**Red carpet.** Shoot, ID runs in background, metadata is embedded before the image hits the FTP. No post-session tagging.
+
+## Long-Term Target
+
+LA 2028 Olympics — unbibbed athletes, impossible to ID manually at speed.
+
+## Hard Requirement
+
+Recognition must **never** interrupt capture. Non-blocking architecture is not optional.
