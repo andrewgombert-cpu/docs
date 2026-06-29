@@ -1,0 +1,25 @@
+---
+title: "Scope"
+description: "What's in and out of the current build. Updated per sprint."
+---
+
+## In Scope — Current Build
+
+- **Android app (Sony PDT-FP1):** Receive images from Sony camera over LAN, crop face region, send to AWS Rekognition, receive ID result, write EXIF/IPTC metadata to full-size image, push to FTP
+- **AWS Rekognition integration:** 97%+ confidence threshold, non-blocking call, graceful fallback on no-match
+- **Non-blocking architecture:** Recognition pipeline must never stall or delay capture
+- **Desktop companion app (Mac-first):** Electron + React, exiftool for metadata writes, SQLite for local caching of ID results
+- **Red carpet workflow:** Single-camera, single-operator use case
+
+## Out of Scope — This Build
+
+- On-device inference via Snapdragon NPU (long-term goal, not now)
+- Photo Mechanic plugin (no public API — standalone app is the path)
+- Consumer-facing app or mobile product
+- Multi-camera sync
+- Cloud-hosted dashboard or web UI
+- Any Tangible Moments infrastructure (separate company, zero bleed)
+
+## Scope Boundary Rule
+
+If a feature isn't on the "In Scope" list above, don't build it. Add it to a future sprint doc first. No scope creep mid-sprint.
