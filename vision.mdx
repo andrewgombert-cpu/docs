@@ -1,0 +1,28 @@
+---
+title: "Vision"
+description: "The north star for HyperID."
+---
+
+## The Problem
+
+Professional photographers at red carpet events, sports, and live events shoot thousands of frames per session. Identifying who is in each frame is done manually — after the shoot, often under deadline. This is slow, error-prone, and doesn't scale.
+
+At the LA 2028 Olympics, athletes won't wear bibs. There is no fallback. Manual ID at that volume is impossible.
+
+## The Vision
+
+HyperID eliminates the manual identification bottleneck. Recognition happens in real time, in the background, without interrupting capture. By the time the image lands on the FTP server, it's already tagged.
+
+The photographer shoots. The ID is done.
+
+## Long-Term Endgame
+
+**On-device inference.** Today HyperID uses AWS Rekognition over LAN. The long-term goal is inference running on the Sony PDT-FP1's Snapdragon 8 Gen 2 NPU — no cloud dependency, no latency, no connectivity requirement.
+
+**Photo Mechanic integration.** Photo Mechanic is the industry standard ingest tool. There is no public API. The near-term path is a standalone desktop companion app (Electron + React, Mac-first). Integration is the holy grail once the path exists.
+
+## Hard Constraints
+
+- Recognition must **never** interrupt capture — non-blocking is a hard requirement, not a preference
+- HyperID and Tangible Moments are separate companies — zero content or infrastructure bleed
+- Red carpet is the path to product-market fit; build for that use case first
