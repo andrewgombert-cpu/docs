@@ -1,0 +1,45 @@
+---
+title: "Build Plan"
+description: "Active sprint. Read this before writing any code."
+---
+
+## Sprint Goal
+
+End-to-end pipeline: Sony camera image received on PDT-FP1 → face cropped → AWS Rekognition → ID returned → metadata written to full-size image → pushed to FTP. Non-blocking throughout.
+
+## Architecture
+
+### Android App (Sony PDT-FP1)
+
+- Receive full-size image from Sony camera over LAN
+- Crop face region (bounding box detection)
+- Send face crop to AWS Rekognition async
+- On result ≥ 97% confidence: write name to EXIF/IPTC on full-size image
+- Push full-size image to FTP
+- On no-match or below threshold: push image untagged, log miss
+
+### Non-Blocking Contract
+
+Recognition runs on a separate thread. The main capture loop never waits on Rekognition. If recognition is still processing when the next frame arrives, it queues — capture does not block.
+
+### Desktop Companion App (Mac-first)
+
+- Electron + React
+- Reads FTP output, displays tagged images with metadata
+- exiftool for metadata read/write
+- SQLite for local ID result cache
+
+## Dev Environment
+
+- Android Studio on Mac
+- Target: Sony PDT-FP1 (Android 13, Snapdragon 8 Gen 2)
+- AWS Rekognition SDK (celebrity face collection pre-loaded)
+
+## Definition of Done
+
+- [ ] Image received from Sony camera over LAN
+- [ ] Face crop sent to Rekognition async
+- [ ] Match ≥ 97% writes name to EXIF/IPTC on full-size image
+- [ ] Full-size image pushed to FTP with metadata intact
+- [ ] No-match case handled gracefully — image still delivered, untagged
+- [ ] Capture loop never blocks on recognition response
