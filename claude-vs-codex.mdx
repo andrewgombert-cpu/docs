@@ -1,0 +1,36 @@
+---
+  title: "Claude vs Codex"
+  description: "Right tool, right phase. Don't use a hammer where you need a scalpel."
+  ---
+
+  ## The Core Distinction
+
+  Claude and Codex are not interchangeable. They solve different problems at different phases of a build. Wrong tool for the phase means wasted time or wrong output.
+
+  ## Claude: Thinking and Architecture
+
+  Use Claude when the answer isn't obvious yet.
+
+  - Scoping a feature — what exactly are we building and why
+- Architecture decisions — which approach, what tradeoffs
+- Debugging subtle behavior — reasoning across the system
+- Writing docs, scope docs, build plans
+- Reviewing code for correctness, not just style
+- Anything requiring multiple constraints held simultaneously
+
+Claude reads the whole context. Use it when context is the point.
+
+  ## Codex: Execution
+
+  Use Codex when you know what to build and need to build it fast.
+
+  - Autocompleting boilerplate you've already designed
+  - Writing repetitive patterns — adapters, handlers, CRUD
+  - Filling in function bodies once the signature is clear
+- Test scaffolding for known behavior
+
+Codex predicts the next token. Use it when the next token is obvious.
+
+  ## For HyperID
+
+  Every session starts in Claude: scope doc, build plan, architecture. Then switches to Codex once the work is clearly defined. Never start in Codex — you'll build the wrong thing fast.
